@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link href="{{ url_for('static', filename='css/form.css') }}" rel="stylesheet" />
+
+<style>
+    body { overflow: auto; background-color: #424D83; }
+</style>
+{% endblock %}
+
+{% block title %}SSR21 문제 은행{% endblock %}
+
+{% block content %}
+
+<div class="form-wrapper form-gate">
+    <form class="form-template gate" action="/" method="post">
+        <h1 class="form-title">SK Shieldus Rookies 21th</h1>
+        <hr>
+        <div class="form-content">
+            <div class="form-row row-1">
+                <div class="form-column"><input name="pass-code" type="password" placeholder="PASS CODE"></div>
+            </div>
+        </div>
+        <div class="button-area"><button class="button" type="submit">입장</button></div>
+    </form>
+</div>
+{% endblock %}
+
