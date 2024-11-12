@@ -110,3 +110,11 @@ def update_mypage():
         data = {'status': 'success', 'message': '회원 정보 수정 완료!'}
     
     return json.dumps(data)
+
+@bp.route('/point', methods=['GET'])
+@login_required
+def point():
+    query = r"SELECT * FROM users WHERE id=%s"
+    rows = execute_query(query, (current_user.id))
+    user = rows[0] if rows else None
+    return render_template("/point.html", user=user)
