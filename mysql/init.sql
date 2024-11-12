@@ -5,6 +5,7 @@ CREATE USER 'master'@'%' IDENTIFIED BY 'P@ss4MA';
 GRANT ALL PRIVILEGES ON webapp.* TO 'master'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 
+-- test
 
 USE webapp;
 
