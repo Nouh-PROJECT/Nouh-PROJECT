@@ -8,28 +8,28 @@ FLUSH PRIVILEGES;
 
 USE webapp;
 
-CREATE TABLE `users` (
-	`id`	INT	NOT NULL PRIMARY KEY, -- 유저 PK
-	`name`	VARCHAR(16) NOT	NULL, -- 이름
-	`userid`	VARCHAR(32) NOT	NULL, -- 아이디
-	`user_pw`	VARCHAR(200)	NULL, -- 패스워드
-	`email`	VARCHAR(50)	NULL, -- 이메일
-	`phone`	VARCHAR(50)	NULL -- 폰번호
+CREATE TABLE users(
+	id INT NOT NULL PRIMARY KEY, -- 유저 PK
+	username VARCHAR(16) NOT NULL, -- 이름
+	userid VARCHAR(32) NOT NULL, -- 아이디
+	user_pw VARCHAR(200) NULL, -- 패스워드
+	email VARCHAR(50) NULL, -- 이메일
+	phone VARCHAR(50) NULL -- 폰번호
 );
 
-CREATE TABLE `membership` (
-	`id`	INT	NOT NULL PRIMARY KEY, -- 멤버쉽 PK
-	`u_id`	INT	NOT NULL, -- 유저(users) 외래키
-	`point`	INT NOT	NULL, -- 포인트
-	`subscribe`	INT NOT	NULL -- 구독 여부
+CREATE TABLE 'membership' (
+	id INT NOT NULL PRIMARY KEY, -- 멤버쉽 PK
+	u_id INT NOT NULL, -- 유저(users) 외래키
+	point INT NOT NULL, -- 포인트
+	subscribe INT NOT NULL -- 구독 여부
 	FOREIGN KEY(u_id) REFERENCES users(id) ON DELETE CASCADE -- 유저(users) 외래키
 );
 
-CREATE TABLE `board` (
-	`id`	INT	NOT NULL PRIMARY KEY, -- 게시판 PK
-	`u_id`	INT	NOT NULL, -- user의 PK 불러오기(PK로 불러온 후, 이름 혹은 아이디 불러오기)
-	`title`	VARCHAR(255)	NULL, -- 제목
-	`content`	VARCHAR(255)	NULL, -- 내용
+CREATE TABLE 'board' (
+	id INT NOT NULL PRIMARY KEY, -- 게시판 PK
+	u_id INT NOT NULL, -- user의 PK 불러오기(PK로 불러온 후, 이름 혹은 아이디 불러오기)
+	title VARCHAR(255) NULL, -- 제목
+	content VARCHAR(255) NULL, -- 내용
 	created_at DATETIME DEFAULT CURRENT_TIMESTAMP, -- 등록날짜
 	FOREIGN KEY(u_id) REFERENCES users(id) ON DELETE CASCADE -- 유저(users) 외래키
 );
@@ -62,10 +62,10 @@ CREATE TABLE 'quizzes' (
 	FOREIGN KEY(s_id) REFERENCES subjects(id) ON DELETE CASCADE-- 과목(subject) 외래키
 );
 
-CREATE TABLE `file` (
-	`id`	INT	NOT NULL PRIMARY KEY, -- 파일 PK
-	`b_id`	INT	NOT NULL, -- 게시판(board) PK
-	`file_url`	VARCHAR(255) NULL, -- 파일 url(추후 url 불러와서 다운로드 가능하게 만듦)
+CREATE TABLE 'file' (
+	id INT NOT NULL PRIMARY KEY, -- 파일 PK
+	b_id INT NOT NULL, -- 게시판(board) PK
+	file_url VARCHAR(255) NULL, -- 파일 url(추후 url 불러와서 다운로드 가능하게 만듦)
 	FOREIGN KEY(b_id) REFERENCES board(id) ON DELETE CASCADE -- 게시판(board) PK
 );
 
