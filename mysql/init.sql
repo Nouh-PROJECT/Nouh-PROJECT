@@ -14,9 +14,15 @@ CREATE TABLE `users` (
 	`userid`	VARCHAR(32) NOT	NULL, -- 아이디
 	`user_pw`	VARCHAR(200)	NULL, -- 패스워드
 	`email`	VARCHAR(50)	NULL, -- 이메일
-	`phone`	VARCHAR(50)	NULL, -- 폰번호
-	`userpoint`	INT	NULL, -- 포인트
-	`usersub`	INT	NULL -- 구독 여부
+	`phone`	VARCHAR(50)	NULL -- 폰번호
+);
+
+CREATE TABLE `membership` (
+	`id`	INT	NOT NULL PRIMARY KEY, -- 멤버쉽 PK
+	`u_id`	INT	NOT NULL, -- 유저(users) 외래키
+	`point`	INT NOT	NULL, -- 포인트
+	`subscribe`	INT NOT	NULL -- 구독 여부
+	FOREIGN KEY(u_id) REFERENCES users(id) ON DELETE CASCADE -- 유저(users) 외래키
 );
 
 CREATE TABLE `board` (
@@ -25,23 +31,23 @@ CREATE TABLE `board` (
 	`title`	VARCHAR(255)	NULL, -- 제목
 	`content`	VARCHAR(255)	NULL, -- 내용
 	created_at DATETIME DEFAULT CURRENT_TIMESTAMP, -- 등록날짜
-	FOREIGN KEY(u_id) REFERENCES users(id) ON DELETE CASCADE -- u_id 외래키
+	FOREIGN KEY(u_id) REFERENCES users(id) ON DELETE CASCADE -- 유저(users) 외래키
 );
 
 
-CREATE TABLE admin (
+CREATE TABLE 'admin' (
 	id INT PRIMARY KEY, -- 관리자 PK
 	FOREIGN KEY(id) REFERENCES users(id) ON DELETE CASCADE -- 유저(users) 외래키 {유저 안에 관리자 존재}
 );
 
 
-CREATE TABLE subjects (
+CREATE TABLE 'subjects' (
 	id INT AUTO_INCREMENT PRIMARY KEY, -- 과목 PK
 	name VARCHAR(64) NOT NULL -- 과목 이름
 );
 
 
-CREATE TABLE quizzes (
+CREATE TABLE 'quizzes' (
 	id INT AUTO_INCREMENT PRIMARY KEY, -- 퀴즈 PK
 	u_id INT NOT NULL, -- 유저(users) 외래키
 	s_id INT NOT NULL, -- 과목(subject) 외래키
