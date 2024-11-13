@@ -18,12 +18,12 @@ CREATE TABLE users (
 	UNIQUE(login_id)
 );
 
-CREATE TABLE 'membership' (
-	id INT NOT NULL PRIMARY KEY, -- 멤버쉽 PK
-	u_id INT NOT NULL, -- 유저(users) 외래키
-	point INT NOT NULL, -- 포인트
-	subscribe INT NOT NULL, -- 구독 여부
-	FOREIGN KEY(u_id) REFERENCES users(id) ON DELETE CASCADE -- 유저(users) 외래키
+CREATE TABLE membership (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	u_id INT NOT NULL,
+	point INT NOT NULL,
+	subscribe INT NOT NULL,
+	FOREIGN KEY(u_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE board (
