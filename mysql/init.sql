@@ -47,6 +47,13 @@ CREATE TABLE subjects (
 	name VARCHAR(64) NOT NULL
 );
 
+-- CREATE TABLE lecture (
+-- 	id INT NOT NULL PRIMARY KEY,
+-- 	s_id INT NOT NULL,
+-- 	lec_url VARCHAR(255) NOT NULL,
+-- 	FOREIGN KEY(s_id) REFERENCES subjects(id) ON DELETE CASCADE
+-- );
+
 
 CREATE TABLE quizzes (
 	id INT AUTO_INCREMENT PRIMARY KEY,
