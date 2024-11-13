@@ -12,4 +12,4 @@ COPY app /flask/app
 COPY config.py /flask/config.py
 COPY wsgi.py /flask/wsgi.py
 
-CMD ["gunicorn", "-b", "0.0.0.0:8000", "wsgi:app"]
+CMD ["gunicorn", "-b", "0.0.0.0:8000", "--access-logfile=access.log", "--error-logfile=error.log", "wsgi:app"]
