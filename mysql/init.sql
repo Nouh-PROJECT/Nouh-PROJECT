@@ -81,3 +81,5 @@ INSERT INTO subjects VALUES (NULL, "클라우드기반 시스템 운영/구축 �
 INSERT INTO subjects VALUES (NULL, "클라우드기반 취약점 진단 및 대응 실무");
 INSERT INTO subjects VALUES (NULL, "데이터 3법과 개인정보보호");
 INSERT INTO subjects VALUES (NULL, "클라우드 보안 컨설팅 실무");
+
+INSERT INTO users VALUES(1,'게스트', 'guest', 'guest', 'www@www.com', '010-1111-1111');
