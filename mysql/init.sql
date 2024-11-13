@@ -8,13 +8,14 @@ FLUSH PRIVILEGES;
 -- test
 USE webapp;
 
-CREATE TABLE users(
-	id INT NOT NULL PRIMARY KEY, -- 유저 PK
-	name VARCHAR(16) NOT NULL, -- 이름
-	user_id VARCHAR(32) NOT NULL, -- 아이디
-	user_pw VARCHAR(200) NOT NULL, -- 패스워드
-	email VARCHAR(50) NULL, -- 이메일
-	phone VARCHAR(50) NULL -- 폰번호
+CREATE TABLE users (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(32) NOT NULL,
+	login_id VARCHAR(32) NOT NULL,
+	login_pw VARCHAR(200) NOT NULL,
+	email VARCHAR(50),
+	phone VARCHAR(50),
+	UNIQUE(login_id)
 );
 
 CREATE TABLE 'membership' (
