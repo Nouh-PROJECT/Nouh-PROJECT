@@ -25,48 +25,48 @@ CREATE TABLE 'membership' (
 	FOREIGN KEY(u_id) REFERENCES users(id) ON DELETE CASCADE -- 유저(users) 외래키
 );
 
-CREATE TABLE 'board' (
-	id INT NOT NULL PRIMARY KEY, -- 게시판 PK
-	u_id INT NOT NULL, -- user의 PK 불러오기(PK로 불러온 후, 이름 혹은 아이디 불러오기)
-	title VARCHAR(255) NOT NULL, -- 제목
-	content VARCHAR(255) NOT NULL, -- 내용
-	created_at DATETIME DEFAULT CURRENT_TIMESTAMP, -- 등록날짜
-	FOREIGN KEY(u_id) REFERENCES users(id) ON DELETE CASCADE -- 유저(users) 외래키
+CREATE TABLE board (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	u_id INT NOT NULL,
+	title VARCHAR(255) NOT NULL,
+	content VARCHAR(255) NOT NULL,
+	created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY(u_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 
-CREATE TABLE 'admin' (
-	id INT PRIMARY KEY, -- 관리자 PK
-	FOREIGN KEY(id) REFERENCES users(id) ON DELETE CASCADE -- 유저(users) 외래키 {유저 안에 관리자 존재}
+CREATE TABLE admin (
+	id INT PRIMARY KEY,
+	FOREIGN KEY(id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 
-CREATE TABLE 'subjects' (
-	id INT AUTO_INCREMENT PRIMARY KEY, -- 과목 PK
-	name VARCHAR(64) NOT NULL -- 과목 이름
+CREATE TABLE subjects (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(64) NOT NULL
 );
 
 
-CREATE TABLE 'quizzes' (
-	id INT AUTO_INCREMENT PRIMARY KEY, -- 퀴즈 PK
-	u_id INT NOT NULL, -- 유저(users) 외래키
-	s_id INT NOT NULL, -- 과목(subject) 외래키
-	question VARCHAR(255) NOT NULL, -- 문제(지문)
-	answer VARCHAR(128) NOT NULL, -- 정답
-	opt1 VARCHAR(128) NOT NULL, -- 오답1
-	opt2 VARCHAR(128), -- 오답 2
-	opt3 VARCHAR(128), -- 오답 3
-	comment VARCHAR(512), -- 해설
-	created_at DATETIME DEFAULT CURRENT_TIMESTAMP, -- 등록 날짜
-	FOREIGN KEY(u_id) REFERENCES users(id) ON DELETE CASCADE, -- 유저(users) 외래키
-	FOREIGN KEY(s_id) REFERENCES subjects(id) ON DELETE CASCADE-- 과목(subject) 외래키
+CREATE TABLE quizzes (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	u_id INT NOT NULL,
+	s_id INT NOT NULL,
+	question VARCHAR(255) NOT NULL,
+	answer VARCHAR(128) NOT NULL,
+	opt1 VARCHAR(128) NOT NULL,
+	opt2 VARCHAR(128),
+	opt3 VARCHAR(128),
+	comment VARCHAR(512),
+	created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY(u_id) REFERENCES users(id) ON DELETE CASCADE,
+	FOREIGN KEY(s_id) REFERENCES subjects(id) ON DELETE CASCADE
 );
 
-CREATE TABLE 'file' (
-	id INT NOT NULL PRIMARY KEY, -- 파일 PK
-	b_id INT NOT NULL, -- 게시판(board) PK
-	file_url VARCHAR(255) NOT NULL, -- 파일 url(추후 url 불러와서 다운로드 가능하게 만듦)
-	FOREIGN KEY(b_id) REFERENCES board(id) ON DELETE CASCADE -- 게시판(board) PK
+CREATE TABLE yfile (
+	id INT NOT NULL PRIMARY KEY,
+	b_id INT NOT NULL,
+	file_url VARCHAR(255) NOT NULL,
+	FOREIGN KEY(b_id) REFERENCES board(id) ON DELETE CASCADE
 );
 
 
