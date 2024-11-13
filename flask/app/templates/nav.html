@@ -6,9 +6,11 @@
             <a id="" class="" href="{{ url_for('auth.mypage') }}">{{ current_user.name }} 님</a>
             <div id="" class="v-line"></div>
             <a id="" class="profile-btn" onclick="Logout()"><i class="fa-solid fa-right-from-bracket fa-lg"></i> Logout</a>
+            <a id="" class="" href="{{ url_for('point')}}"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Point</a>
             {% else %}
             <a id="" class="login-btn" onclick="ShowLoginForm()"><i class="fa-solid fa-right-to-bracket fa-lg"></i> Login</a>
             {% endif %}
+            
         </div>
     </div>
  </nav>
