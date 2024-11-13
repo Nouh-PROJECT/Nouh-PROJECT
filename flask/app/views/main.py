@@ -8,10 +8,9 @@ bp = Blueprint('main', __name__)
 
 @bp.route("/", methods=['GET', 'POST'])
 def index():
-#    session.pop('workbook', None)
-#    session.pop('answers', None)
-#    session.pop('marking', None)
+    return render_template('index.html')
 
+<<<<<<< HEAD
     if request.method == 'POST':
         code = request.form.get('pass-code')
 
@@ -48,3 +47,8 @@ def module_test():
     session["point"] = 1000
     return render_template("test/testpage01.html")
 >>>>>>> Stashed changes
+=======
+@bp.route("/test", methods=["GET", "POST"])
+def module_test():
+    return render_template("test/testpage01.html")
+>>>>>>> d5a6d6f08f3a58e5cfa408aece902ee5d159314f

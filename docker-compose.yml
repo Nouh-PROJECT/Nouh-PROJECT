@@ -11,6 +11,8 @@ services:
   flask:
     container_name: flask
     build: ./flask
+    volumes:
+      - ./flask/app:/flask/app
     depends_on:
       - mysql
     networks:
@@ -21,9 +23,6 @@ services:
     build: ./nginx
     ports:
       - '80:80'
-      - '443:443'
-    volumes:
-      - /etc/letsencrypt:/etc/letsencrypt
     depends_on:
       - flask
     networks:
