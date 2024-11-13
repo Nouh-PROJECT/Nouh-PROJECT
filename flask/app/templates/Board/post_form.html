@@ -1,56 +1,29 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 작성</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">게시글 작성</h1>
+        <form action="/write" method="POST">
+            <div class="form-group">
+                <label for="title">제목</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="content">내용</label>
+                <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">제출</button>
+        </form>
+    </div>
 
-{% block head %}
-    <link href="{{ url_for('static', filename='css/form.css') }}" rel="stylesheet" />
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .board-container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-        }
-        .board-table th, .board-table td {
-            text-align: center;
-        }
-    </style>
-{% endblock %}
-
-{% block content %}
-{% include "nav.html" %}
-
-<div class="board-container">
-    <h2>게시판</h2>
-
-    <!-- 게시글 목록 테이블 -->
-    <table class="table table-bordered board-table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>작성일</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for post in posts %}
-                <tr>
-                    <td>{{ loop.index }}</td>
-                    <td><a href="{{ url_for('view_post', post_id=post.id) }}">{{ post.title }}</a></td>
-                    <td>{{ post.writer }}</td>
-                    <td>{{ post.created_at }}</td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="4">등록된 글이 없습니다.</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <!-- 글 작성 버튼 -->
-    <a href="{{ url_for('Boardwrite') }}" class="btn btn-primary mb-3">글 작성</a>
-</div>
-
-{% endblock %}
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
