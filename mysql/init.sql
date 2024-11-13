@@ -10,8 +10,8 @@ USE webapp;
 
 CREATE TABLE users(
 	id INT NOT NULL PRIMARY KEY, -- 유저 PK
-	username VARCHAR(16) NOT NULL, -- 이름
-	userid VARCHAR(32) NOT NULL, -- 아이디
+	name VARCHAR(16) NOT NULL, -- 이름
+	user_id VARCHAR(32) NOT NULL, -- 아이디
 	user_pw VARCHAR(200) NOT NULL, -- 패스워드
 	email VARCHAR(50) NULL, -- 이메일
 	phone VARCHAR(50) NULL -- 폰번호
@@ -21,7 +21,7 @@ CREATE TABLE 'membership' (
 	id INT NOT NULL PRIMARY KEY, -- 멤버쉽 PK
 	u_id INT NOT NULL, -- 유저(users) 외래키
 	point INT NOT NULL, -- 포인트
-	subscribe INT NOT NULL -- 구독 여부
+	subscribe INT NOT NULL, -- 구독 여부
 	FOREIGN KEY(u_id) REFERENCES users(id) ON DELETE CASCADE -- 유저(users) 외래키
 );
 
