@@ -4,7 +4,7 @@ import json
 # Blueprint 생성
 bp = Blueprint('point', __name__, url_prefix='/point')
 
-@bp.route('/', methods=['GET', 'POST'])
+@bp.route('/point', methods=['GET', 'POST'])
 def point_page():
     if request.method == 'POST':
         # 사용자가 선택한 포인트 및 결제 금액을 가져오기
